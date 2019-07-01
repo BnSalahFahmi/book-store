@@ -1,11 +1,103 @@
-.App {
-  text-align: center;
+body {
+  font-family: "Gill Sans", sans-serif !important;
+}
+
+.navbar {
+  padding: 0 1rem !important;
+  height: 60px !important;
+  margin-bottom: 15px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0, 0, 0, 0.61) !important;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
+}
+
+.dashboard-card .card-link {
+  color: #311B92 !important;
+}
+
+.card-title {
+  color: #757575;
+  font-style: italic;
+}
+
+.card-img {
+  padding: 2px;
+  height: 120px;
+}
+
+.dashboard-card p {
+  height: 100px;
+}
+
+.jumbotron {
+  background-color: #e9ecef75 !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.card-block {
+  padding: 10px;
+}
+
+.navbar {
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.16),0 0px 5px 0 rgba(0,0,0,.12)!important;
+}
+
+.dashboard-container {
+  margin-top: 50px;
+}
+
+.navbar-nav.pull-right {
+  position: absolute;
+  right: 10px;
+  top: 15%;
+}
+
+.heading {
+  font-size: 28px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #1A237E;
+  font-style: italic;
+}
+
+.buttons {
+  float: right;
+  text-align: right;
+}
+
+.float-right {
+  float: right;
+}
+
+.margin-left {
+  margin-left: 0px !important;
+}
+
+.margin-left .btn {
+  width: 100px;
+}
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
+
+.buttons .btn {
+  margin: 5px;
+  width: 130px;
+}
+
+.icons-buttons .btn {
+  margin: 0px 5px;
 }
 
 .App-header {
@@ -30,4 +122,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.react-bs-table-container table {
+  margin-bottom: 0px !important;
 }
