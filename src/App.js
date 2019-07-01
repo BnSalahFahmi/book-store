@@ -7,7 +7,10 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEdit, faTrash, faUser, faList, faSignOutAlt, faPlus, faTachometerAlt, faBook } from '@fortawesome/free-solid-svg-icons';
 
+import { ToastContainer } from 'react-toastify';
+
 import Dashboard from './components/dashboard';
+import BooksListContainer from "./components/book-list-container";
 
 library.add(faEye);
 library.add(faEdit);
@@ -25,6 +28,7 @@ const App = () => {
 
   return (
     <Router>
+      <ToastContainer />
       <div className="cont">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="https://codingthesmartway.com" target="_blank">
@@ -52,6 +56,7 @@ const App = () => {
         <div class="content">
           <Switch>
               <Route exact path="/" component={Dashboard} />
+              <Route path="/list" component={BooksListContainer} />
           </Switch>
         </div>
       </div>

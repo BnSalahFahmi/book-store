@@ -1,3 +1,7 @@
+@import './assets/css/buttons.css';
+@import './assets/css/tables.css';
+@import './assets/css/inputs.css';
+
 body {
   font-family: "Gill Sans", sans-serif !important;
 }

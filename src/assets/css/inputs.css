@@ -1,0 +1,16 @@
+input, select, .custom-file{
+    height: 32px !important;
+    border-radius: 2px !important;
+    font-size: 14px !important;
+}
+
+.custom-file-label {
+    height: 32px !important;
+    line-height: 1.2 !important;
+    font-size: 14px !important;
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    height: 30px !important;
+    line-height: 1.1 !important;
+}

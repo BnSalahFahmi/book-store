@@ -1,0 +1,42 @@
+table tr th, table-sm tr th{
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 14px;
+    padding: 10px !important;
+}
+
+table tr td, table-sm tr td {
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px !important;
+    vertical-align: middle !important; 
+}
+
+table tr td:hover, table tr th:hover, table-sm tr td:hover, table-sm tr th:hover {
+    cursor: pointer;
+}
+
+.react-bs-table-pagination {   
+    float: right;
+    margin-right: 50px;
+}
+
+.react-bs-table-container .svg-inline--fa {
+    float: right;
+}
+
+.react-bootstrap-table-page-btns-ul .page-item:first-child .page-link {
+    border-top-left-radius: 1px !important;
+    border-bottom-left-radius: 1px !important;
+}
+
+.react-bootstrap-table-page-btns-ul .page-item:last-child .page-link {
+    border-top-right-radius: 1px !important;
+    border-bottom-right-radius: 1px !important;
+}
+
+/* .react-bootstrap-table-page-btns-ul .page-item .page-link {
+    color: #9E9E9E !important;
+} */
