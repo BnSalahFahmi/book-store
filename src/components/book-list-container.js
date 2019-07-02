@@ -16,42 +16,84 @@ library.add(faTrash);
 
 export class BooksListContainer extends React.Component {
 
+    enableView = false;
+    enableEdit = false;
+    enableDelete = false;
+
     constructor() {
         super();
         this.handleRowSelect = this.handleRowSelect.bind(this);
-        this.handleViewAppClick = this.handleViewAppClick.bind(this);
+        this.handleSelectAll = this.handleSelectAll.bind(this);
+        this.handleAddClick = this.handleAddClick.bind(this);
+        this.handleViewClick = this.handleViewClick.bind(this);
+        this.handleEditClick = this.handleEditClick.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.state = {
-            selectedBook: undefined
+            selectedBook: undefined,
+            enableView: false,
+            enableEdit: false,
+            enableDelete: false
         }
     }
 
     componentDidMount() {
         this.props.action.getBooksAction()
         .catch(error => {
-            //toast("Error occured !");
+            toast("Error occured !");
         });
     }
 
     handleRowSelect(row, isSelected) {
         if (isSelected) {
-            this.state.selectedRows.push(row);
+            this.setState({
+                selectedBook: row,
+                enableView: true,
+                enableEdit: true,
+                enableDelete: true
+            })
+        } else {
+            this.setState({
+                selectedBook: undefined,
+                enableView: false,
+                enableEdit: false,
+                enableDelete: false
+            })
         }
     }
 
-    handleAddAppClick(itemId, event) {
-
+    handleSelectAll(isSelected, rows) {
+        debugger;
+        if (isSelected) {
+            this.setState({
+                selectedBook: rows,
+                enableView: false,
+                enableEdit: false,
+                enableDelete: true
+            })
+        } else {
+            this.setState({
+                selectedBook: undefined,
+                enableView: false,
+                enableEdit: false,
+                enableDelete: false
+            })
+        }
     }
 
-    handleViewAppClick(itemId, event) {
-
+    handleAddClick(itemId, event) {
+        this.props.history.push('/create')
     }
 
-    handleEditAppClick(itemId, event) {
-
+    handleViewClick(itemId, event) {
+        //TODO
     }
 
-    handleDeleteAppClick(itemId, event) {
+    handleEditClick(itemId, event) {
+        //TODO
+    }
 
+    handleDeleteClick(itemId, event) {
+        //TODO
     }
 
     render() {
@@ -71,9 +113,7 @@ export class BooksListContainer extends React.Component {
                             <button
                                 type="button"
                                 className="btn btn-primary ml-2"
-                                onClick={() => {
-                                    this.props.history.push('/create')
-                                }}
+                                onClick={this.handleAddClick}
                             >
                                 <FontAwesomeIcon icon='plus' /> New
                             </button>
@@ -81,6 +121,8 @@ export class BooksListContainer extends React.Component {
                             <button
                                 type="button"
                                 className="btn btn-success ml-2"
+                                disabled={!this.state.enableView}
+                                onClick={this.handleViewClick}
                             >
                                 <FontAwesomeIcon icon='eye' /> View
                             </button>
@@ -88,6 +130,8 @@ export class BooksListContainer extends React.Component {
                             <button
                                 type="button"
                                 className="btn btn-warning ml-2"
+                                disabled={!this.state.enableEdit}
+                                onClick={this.handleEditClick}
                             >
                                 <FontAwesomeIcon icon='edit' /> Edit
                             </button>
@@ -95,6 +139,8 @@ export class BooksListContainer extends React.Component {
                             <button
                                 type="button"
                                 className="btn btn-danger ml-2"
+                                disabled={!this.state.enableDelete}
+                                onClick={this.handleDeleteClick}
                             >
                                 <FontAwesomeIcon icon='trash' /> Delete
                             </button>
@@ -104,7 +150,7 @@ export class BooksListContainer extends React.Component {
 
                 <div className="row">
                     <div className="col">
-                        <BooksList books={books} handleRowSelect={this.handleRowSelect} />
+                        <BooksList books={books} handleRowSelect={this.handleRowSelect} handleSelectAll={this.handleSelectAll}/>
                     </div>
                 </div>
             </div>

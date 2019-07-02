@@ -42,3 +42,8 @@
 .btn-default:focus {
     color: #FFF;
 }
+
+button:disabled,
+button[disabled]{
+  cursor: not-allowed !important;
+}

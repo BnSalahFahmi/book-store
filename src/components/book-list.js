@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSort, faSortUp, faSortDown} from '@fortawesome/free-solid-svg-icons';
+import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 library.add(faSort);
 library.add(faSortUp);
 library.add(faSortDown);
@@ -12,18 +12,18 @@ library.add(faSortDown);
 const getCaret = direction => {
     if (direction === 'asc') {
         return (
-            <FontAwesomeIcon icon='sort-up'/>
+            <FontAwesomeIcon icon='sort-up' />
         );
     }
 
     if (direction === 'desc') {
         return (
-            <FontAwesomeIcon icon='sort-down'/>
+            <FontAwesomeIcon icon='sort-down' />
         );
     }
 
     return (
-        <FontAwesomeIcon icon='sort'/>
+        <FontAwesomeIcon icon='sort' />
     );
 };
 
@@ -40,14 +40,14 @@ export default class BooksList extends React.Component {
     constructor(props) {
         super(props);
         this.options = {
-            page: 2, 
-            sizePerPageList: [ {
-              text: '5', value: 5
+            page: 2,
+            sizePerPageList: [{
+                text: '5', value: 5
             }, {
-              text: '10', value: 10
+                text: '10', value: 10
             }, {
-              text: 'All', value: this.props.length
-            } ],
+                text: 'All', value: this.props.length
+            }],
             sizePerPage: 5,
             pageStartIndex: 0,
             paginationSize: 3,
@@ -56,26 +56,19 @@ export default class BooksList extends React.Component {
             firstPage: 'First',
             lastPage: 'Last',
             paginationShowsTotal: this.renderShowsTotal,
-            paginationPosition: 'bottom' ,
+            paginationPosition: 'bottom',
             sortIndicator: true,
-            noDataText: 'No data' 
-          };
+            noDataText: 'No data'
+        };
 
         this.selectRowProp = {
             mode: 'checkbox',
             bgColor: '#c1f291',
             onSelect: props.handleRowSelect,
-            clickToSelect: true,
-            onSelectAll: this.onSelectAll,
-            hideSelectColumn: true
+            onSelectAll: props.handleSelectAll,
+            clickToSelect: true
         };
     }
-
-    onSelectAll = (isSelected) => {
-        if (isSelected) {
-          return this.refs.table.state.data.map(row => row.id);
-        }
-      }
 
     render() {
         return (
