@@ -4,6 +4,10 @@ input, select, .custom-file{
     font-size: 14px !important;
 }
 
+textarea {
+    font-size: 14px !important;
+}
+
 .custom-file-label {
     height: 32px !important;
     line-height: 1.2 !important;

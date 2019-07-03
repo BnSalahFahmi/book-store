@@ -40,7 +40,7 @@ export default class BooksList extends React.Component {
     constructor(props) {
         super(props);
         this.options = {
-            page: 2,
+            page: 1,
             sizePerPageList: [{
                 text: '5', value: 5
             }, {
@@ -49,8 +49,8 @@ export default class BooksList extends React.Component {
                 text: 'All', value: this.props.length
             }],
             sizePerPage: 5,
-            pageStartIndex: 0,
-            paginationSize: 3,
+            pageStartIndex: 1,
+            paginationSize: 10,
             prePage: 'Prev',
             nextPage: 'Next',
             firstPage: 'First',

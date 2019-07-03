@@ -103,6 +103,15 @@ class BookApi {
         });
     }
 
+    static saveBook(book) {
+        book = Object.assign({}, book); 
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(book);
+            }, delay);
+        });
+    }
+
 }
 
 export default BookApi;

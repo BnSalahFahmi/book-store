@@ -47,3 +47,7 @@ button:disabled,
 button[disabled]{
   cursor: not-allowed !important;
 }
+
+.btn.input-group-btn {
+    margin: 0px !important;
+}

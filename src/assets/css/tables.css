@@ -12,6 +12,7 @@ table tr td, table-sm tr td {
     vertical-align: middle;
     padding: 10px !important;
     vertical-align: middle !important; 
+    outline: none !important;
 }
 
 table tr td:hover, table tr th:hover, table-sm tr td:hover, table-sm tr th:hover {

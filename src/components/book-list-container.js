@@ -81,15 +81,15 @@ export class BooksListContainer extends React.Component {
     }
 
     handleAddClick(itemId, event) {
-        this.props.history.push('/create')
+        this.props.history.push('/book');
     }
 
     handleViewClick(itemId, event) {
-        //TODO
+        //TODO  
     }
 
     handleEditClick(itemId, event) {
-        //TODO
+        //TODO 
     }
 
     handleDeleteClick(itemId, event) {
