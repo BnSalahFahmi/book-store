@@ -2,7 +2,8 @@ import { BookActionTypes } from '../actions/books.actions';
 import _ from 'lodash';
 
 const Initial_State = {
-    books : []
+    books : [],
+    selectedBook: undefined
 }
 
 const booksReducer = (state = Initial_State, action) => {
@@ -11,6 +12,13 @@ const booksReducer = (state = Initial_State, action) => {
             return {
                 ...state, 
                 books: _.assign(action.books)
+            };
+        }
+        case BookActionTypes.GET_BOOK_RESPONSE: {
+            debugger;
+            return {
+                ...state,
+                selectedBook: _.assign(action.book)
             };
         }
         default: { return state; }

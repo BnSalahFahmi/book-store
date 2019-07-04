@@ -1,15 +1,30 @@
 @import './assets/css/buttons.css';
 @import './assets/css/tables.css';
 @import './assets/css/inputs.css';
+@import './assets/css/modals.css';
 
 body {
-  font-family: "Gill Sans", sans-serif !important;
+  font-family: Roboto,"Helvetica Neue",sans-serif !important;
+}
+
+.app-logo {
+  -webkit-animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 20s linear;
 }
 
 .navbar {
   padding: 0 1rem !important;
   height: 60px !important;
   margin-bottom: 15px;
+}
+
+.card-link {
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.card-link:hover {
+  background-color: #f8f8f8;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -23,7 +38,7 @@ body {
 }
 
 .dashboard-card .card-link {
-  color: #311B92 !important;
+  color: #37474F !important
 }
 
 .card-title {
@@ -36,8 +51,18 @@ body {
   height: 120px;
 }
 
+.card-img-view {
+  position: absolute;
+  top: -85px;
+  right: 15px;
+}
+
 .dashboard-card p {
   height: 100px;
+}
+
+.svg-inline--fa {
+  margin-right: 5px;
 }
 
 .jumbotron {

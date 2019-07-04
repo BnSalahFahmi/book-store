@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Dashboard from './components/dashboard';
 import BooksListContainer from "./components/book-list-container";
-import BookFormContainer from "./components/book-form-container";
+import BookForm from "./components/book-form";
 
 library.add(faEye);
 library.add(faEdit);
@@ -32,14 +32,14 @@ const App = () => {
       <ToastContainer />
       <div className="cont">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <img src={logo} width="60" height="60" alt="CodingTheSmartWay.com" />
+          <img class="app-logo" src={logo} width="60" height="60" alt="ReactJS" />
           <div className="collpase nav-collapse">
             <ul className="navbar-nav mr-auto">
               <li className="navbar-item">
                 <Link to="/" className="nav-link"><FontAwesomeIcon icon='tachometer-alt' /> Dashboard</Link>
               </li>
               <li className="navbar-item">
-                <Link to="/list" className="nav-link"><FontAwesomeIcon icon='book' /> Books</Link>
+                <Link to="/books" className="nav-link"><FontAwesomeIcon icon='book' /> Books</Link>
               </li>
               <li className="navbar-item">
                 <Link to="/book" className="nav-link"><FontAwesomeIcon icon='plus' /> New Book</Link>
@@ -55,9 +55,9 @@ const App = () => {
         <div class="content">
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/list" component={BooksListContainer} />
-            <Route path="/book" component={BookFormContainer} />
-            <Route path="/book/:id" component={BookFormContainer} />
+            <Route path="/books" component={BooksListContainer} />
+            <Route path="/book" component={BookForm} />
+            <Route path="/book/:id" component={BookForm} />
           </Switch>
         </div>
       </div>

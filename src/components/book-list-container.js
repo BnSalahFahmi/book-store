@@ -8,22 +8,20 @@ import { toast } from 'react-toastify';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import * as BookActionTypes from '../store/actions/books.actions';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEye, faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEdit, faTrash, faPlus, faWindowClose} from '@fortawesome/free-solid-svg-icons';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button'
 library.add(faEye);
 library.add(faPlus);
 library.add(faEdit);
 library.add(faTrash);
+library.add(faWindowClose);
 
 export class BooksListContainer extends React.Component {
-
-    enableView = false;
-    enableEdit = false;
-    enableDelete = false;
 
     constructor() {
         super();
         this.handleRowSelect = this.handleRowSelect.bind(this);
-        this.handleSelectAll = this.handleSelectAll.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
         this.handleViewClick = this.handleViewClick.bind(this);
         this.handleEditClick = this.handleEditClick.bind(this);
@@ -32,15 +30,16 @@ export class BooksListContainer extends React.Component {
             selectedBook: undefined,
             enableView: false,
             enableEdit: false,
-            enableDelete: false
+            enableDelete: false,
+            show: false
         }
     }
 
     componentDidMount() {
         this.props.action.getBooksAction()
-        .catch(error => {
-            toast("Error occured !");
-        });
+            .catch(error => {
+                toast("Error occured !");
+            });
     }
 
     handleRowSelect(row, isSelected) {
@@ -49,33 +48,16 @@ export class BooksListContainer extends React.Component {
                 selectedBook: row,
                 enableView: true,
                 enableEdit: true,
-                enableDelete: true
+                enableDelete: true,
+                show: false
             })
         } else {
             this.setState({
                 selectedBook: undefined,
                 enableView: false,
                 enableEdit: false,
-                enableDelete: false
-            })
-        }
-    }
-
-    handleSelectAll(isSelected, rows) {
-        debugger;
-        if (isSelected) {
-            this.setState({
-                selectedBook: rows,
-                enableView: false,
-                enableEdit: false,
-                enableDelete: true
-            })
-        } else {
-            this.setState({
-                selectedBook: undefined,
-                enableView: false,
-                enableEdit: false,
-                enableDelete: false
+                enableDelete: false,
+                show: false
             })
         }
     }
@@ -85,16 +67,41 @@ export class BooksListContainer extends React.Component {
     }
 
     handleViewClick(itemId, event) {
-        //TODO  
+        const selectedBookId = this.state.selectedBook.id;
+        if (selectedBookId) {
+            const existingBookIndex = this.props.books.findIndex(book => book.id === selectedBookId);
+            const bookFound = Object.assign({}, this.props.books[existingBookIndex]);
+            this.setState({
+                selectedBook: bookFound,
+                enableView: this.state.enableView,
+                enableEdit: this.state.enableEdit,
+                enableDelete: this.state.enableDelete,
+                show: true
+            })
+        }
     }
 
     handleEditClick(itemId, event) {
-        //TODO 
+        const selectedBookId = this.state.selectedBook.id;
+        if (selectedBookId) {
+            this.setState({ selectedBookId: undefined });
+            this.props.history.push(`/book/${selectedBookId}`);
+        }
     }
 
     handleDeleteClick(itemId, event) {
         //TODO
     }
+
+    close = () => {
+        this.setState({
+            selectedBook: this.state.selectedBook,
+            enableView: this.state.enableView,
+            enableEdit: this.state.enableEdit,
+            enableDelete: this.state.enableDelete,
+            show: false
+        })
+    };
 
     render() {
         const { books } = this.props;
@@ -107,6 +114,62 @@ export class BooksListContainer extends React.Component {
 
         return (
             <div className="container">
+                {this.state.selectedBook ?  <Modal class="view-book-modal" show={this.state.show} onHide={this.close}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Book
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div class="row">
+                            <div class="col-md-10">
+                            <form>
+                            <div className="form-group">
+                                <label>Name</label>
+                                <input
+                                    className="form-control"
+                                    placeholder="Input name"
+                                    value={this.state.selectedBook.name}
+                                    disabled="true"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Description</label>
+                                <textarea
+                                    className="form-control"
+                                    placeholder="Input address"
+                                    rows="5"
+                                    value={this.state.selectedBook.description}
+                                    disabled="true"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Author</label>
+                                <input
+                                    className="form-control"
+                                    placeholder="Input address"
+                                    value={this.state.selectedBook.author}
+                                    disabled="true"
+                                />
+                            </div>
+                        </form>
+                            </div>
+                            <div class="col-md-2">
+                            <img class="img-thumbnail card-img-view" src={this.state.selectedBook.photo} alt="src={this.state.selectedBook.name}"/>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="danger">
+                            <FontAwesomeIcon icon='trash' />
+                            Delete
+                        </Button>
+                        <Button variant="secondary" onClick={this.close}>
+                            <FontAwesomeIcon icon='window-close' />
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal> : null}
                 <div className="row mt-3 margin-left margin-bottom">
                     <div className="col">
                         <div className="btn-group" role="group">
@@ -150,7 +213,7 @@ export class BooksListContainer extends React.Component {
 
                 <div className="row">
                     <div className="col">
-                        <BooksList books={books} handleRowSelect={this.handleRowSelect} handleSelectAll={this.handleSelectAll}/>
+                        <BooksList books={books} handleRowSelect={this.handleRowSelect} handleSelectAll={this.handleSelectAll} />
                     </div>
                 </div>
             </div>
@@ -159,10 +222,9 @@ export class BooksListContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    books: state.booksReducer.books
+    books: state.booksReducer.books,
+    selectedBook: state.booksReducer.selectedBook
 });
-
-
 
 const mapDispatchToProps = dispatch => ({
     action: bindActionCreators(BookActionTypes, dispatch)

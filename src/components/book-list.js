@@ -27,10 +27,6 @@ const getCaret = direction => {
     );
 };
 
-const titleFormatter = (cell, row) => {
-    return `<a href=${row.watchHref} target="_blank">${cell}</a>`;
-};
-
 function imageFormatter(cell, row) {
     return "<img src='" + cell + "'/>";
 }
@@ -62,11 +58,11 @@ export default class BooksList extends React.Component {
         };
 
         this.selectRowProp = {
-            mode: 'checkbox',
+            mode: 'radio',
             bgColor: '#c1f291',
             onSelect: props.handleRowSelect,
-            onSelectAll: props.handleSelectAll,
-            clickToSelect: true
+            clickToSelect: true,
+            hideSelectColumn: true
         };
     }
 

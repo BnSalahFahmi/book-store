@@ -112,6 +112,15 @@ class BookApi {
         });
     }
 
+    static getBook(bookId) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const existingBookIndex = books.findIndex(book => book.id === bookId);
+                const bookFound = Object.assign({}, books[existingBookIndex]);
+                resolve(bookFound);
+            }, delay);
+        });
+    }
 }
 
 export default BookApi;

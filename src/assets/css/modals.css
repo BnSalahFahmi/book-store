@@ -1,0 +1,29 @@
+.modal-dialog {
+    width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 1000px !important;
+    border-width: 0px !important;
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+}
+
+.modal-content {
+    border-radius: 2px !important;
+    border-width: 0px !important;
+}
+
+.modal-header {
+    padding: 5px 15px !important;
+}
+
+.modal-footer {
+    padding: 0.2rem 0.6rem !important;
+}
+
+.modal-footer button {
+    width: 120px;
+}
+
+.modal-header .close {
+    padding: 1.2rem 1rem !important;
+}
