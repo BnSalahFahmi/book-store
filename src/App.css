@@ -164,3 +164,11 @@ body {
 .react-bs-table-container table {
   margin-bottom: 0px !important;
 }
+
+.not-found {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: -webkit-box;
+  margin-bottom: auto !important;
+  margin-top: 150px !important;
+}

@@ -13,6 +13,7 @@ import Dashboard from './components/dashboard';
 import BooksListContainer from "./components/book-list-container";
 import BookForm from "./components/book-form";
 import About from './components/about';
+import NotFound from './components/not-found';
 
 library.add(faEye);
 library.add(faEdit);
@@ -60,6 +61,7 @@ const App = () => {
             <Route path="/book" component={BookForm} />
             <Route path="/book/:id" component={BookForm} />
             <Route path="/about" component={About} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </div>

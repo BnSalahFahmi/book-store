@@ -11,12 +11,6 @@ export class About extends Component {
     render() {
         return (
             <div className="mini-container jumbotron">
-                {/* <div className="jumbotron">
-                    <h1>About Developer</h1>
-                    <p>This application was developed by Fahmi BEN SALAH</p>
-                    <p><a className="btn btn-primary btn-lg" href="https://github.com/BnSalahFahmi" role="button">See More Projects</a></p>
-                </div> */}
-
                 <div class="media">
                     <a class="pull-left" href="https://github.com/BnSalahFahmi">
                         <img class="media-object img-thumbnail" src={photo} alt="Fahmi BEN SALAH"/>
