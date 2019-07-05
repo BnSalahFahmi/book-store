@@ -68,7 +68,7 @@ export default class BooksList extends React.Component {
 
     render() {
         return (
-            <div class="container">
+            <div className="container">
                 <BootstrapTable version='4' pagination data={this.props.books} selectRow={this.selectRowProp} options={this.options} striped hover condensed>
                     <TableHeaderColumn dataField="id" isKey hidden>Id</TableHeaderColumn>
 

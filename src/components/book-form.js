@@ -15,7 +15,6 @@ export class BookForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSave = this.handleSave.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.handleReset = this.handleReset.bind(this);
@@ -38,7 +37,7 @@ export class BookForm extends React.Component {
         const books = this.props.initialValues;
         this.props.action.getBookAction(bookId)
             .catch(error => {
-                toast("Error occured !");
+                toast("Error occured !", { type: toast.TYPE.ERROR, autoClose: 3000 });
             });
     }
 
@@ -55,24 +54,6 @@ export class BookForm extends React.Component {
                 }
             }
         )
-    }
-
-    handleSave(values) {
-        const book = {
-            id: values.id,
-            name: values.name,
-            description: values.description,
-            author: values.author,
-            photo: values.photo,
-        };
-
-        this.props.action.saveBookAction(book)
-            .then(() => {
-                toast("Book Saved");
-                this.props.history.push('/books');
-            }).catch(error => {
-                toast("Error occured");
-            });
     }
 
     handleCancel(event) {
@@ -150,7 +131,6 @@ export class BookForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        debugger;
         const book = {
             id: this.state.book.id ? this.state.book.id : this.generatedID(),
             name: this.state.book.name,
@@ -160,10 +140,10 @@ export class BookForm extends React.Component {
         };
         this.props.action.saveBookAction(book)
             .then(() => {
-                toast("Book Saved");
+                toast("Book Saved", { type: toast.TYPE.SUCCESS, autoClose: 3000 });
                 this.props.history.push('/books');
             }).catch(error => {
-                toast("Error occured");
+                toast("Error occured", { type: toast.TYPE.ERROR, autoClose: 3000 });
             });
     }
 

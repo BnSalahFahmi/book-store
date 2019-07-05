@@ -121,6 +121,16 @@ class BookApi {
             }, delay);
         });
     }
+
+    static deleteBook(bookId) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const indexOfBookToDelete = books.findIndex(book => book.id === bookId);
+                books.splice(indexOfBookToDelete, 1);
+                resolve();
+            }, delay);
+        });
+    }
 }
 
 export default BookApi;

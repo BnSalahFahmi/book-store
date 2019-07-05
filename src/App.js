@@ -32,7 +32,7 @@ const App = () => {
       <ToastContainer />
       <div className="cont">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <img class="app-logo" src={logo} width="60" height="60" alt="ReactJS" />
+          <img className="app-logo" src={logo} width="60" height="60" alt="ReactJS" />
           <div className="collpase nav-collapse">
             <ul className="navbar-nav mr-auto">
               <li className="navbar-item">
@@ -52,7 +52,7 @@ const App = () => {
             </ul>}
           </div>
         </nav>
-        <div class="content">
+        <div className="content">
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route path="/books" component={BooksListContainer} />

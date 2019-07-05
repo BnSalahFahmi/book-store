@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import * as BookActionTypes from '../store/actions/books.actions';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEye, faEdit, faTrash, faPlus, faWindowClose} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEdit, faTrash, faPlus, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 library.add(faEye);
@@ -38,7 +38,7 @@ export class BooksListContainer extends React.Component {
     componentDidMount() {
         this.props.action.getBooksAction()
             .catch(error => {
-                toast("Error occured !");
+                toast("Error occured !", { type: toast.TYPE.ERROR, autoClose: 3000 });
             });
     }
 
@@ -90,7 +90,22 @@ export class BooksListContainer extends React.Component {
     }
 
     handleDeleteClick(itemId, event) {
-        //TODO
+        const selectedBookId = this.state.selectedBook.id;
+        if (selectedBookId) {
+            this.setState({
+                selectedBook: undefined,
+                enableView: false,
+                enableEdit: false,
+                enableDelete: false,
+                show: false
+            })
+            this.props.action.deleteBookAction(selectedBookId).then(() => {
+                toast("Book Deleted", { type: toast.TYPE.SUCCESS, autoClose: 3000 });
+            })
+            .catch(error => {
+                toast("Error occured !", { type: toast.TYPE.ERROR, autoClose: 3000 });
+            });
+        }
     }
 
     close = () => {
@@ -114,62 +129,63 @@ export class BooksListContainer extends React.Component {
 
         return (
             <div className="container">
-                {this.state.selectedBook ?  <Modal class="view-book-modal" show={this.state.show} onHide={this.close}>
+                {this.state.selectedBook ? <Modal className="view-book-modal" show={this.state.show} onHide={this.close}>
                     <Modal.Header closeButton>
                         <Modal.Title>
                             Book
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div class="row">
-                            <div class="col-md-10">
-                            <form>
-                            <div className="form-group">
-                                <label>ID</label>
-                                <input
-                                    className="form-control"
-                                    placeholder="Input name"
-                                    value={this.state.selectedBook.id}
-                                    disabled="true"
-                                />
+                        <div className="row">
+                            <div className="col-md-10">
+                                <form>
+                                    <div className="form-group">
+                                        <label>ID</label>
+                                        <input
+                                            className="form-control"
+                                            placeholder="Input name"
+                                            value={this.state.selectedBook.id}
+                                            disabled="true"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Name</label>
+                                        <input
+                                            className="form-control"
+                                            placeholder="Input name"
+                                            value={this.state.selectedBook.name}
+                                            disabled="true"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Description</label>
+                                        <textarea
+                                            className="form-control"
+                                            placeholder="Input address"
+                                            rows="5"
+                                            value={this.state.selectedBook.description}
+                                            disabled="true"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Author</label>
+                                        <input
+                                            className="form-control"
+                                            placeholder="Input address"
+                                            value={this.state.selectedBook.author}
+                                            disabled="true"
+                                        />
+                                    </div>
+                                </form>
                             </div>
-                            <div className="form-group">
-                                <label>Name</label>
-                                <input
-                                    className="form-control"
-                                    placeholder="Input name"
-                                    value={this.state.selectedBook.name}
-                                    disabled="true"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Description</label>
-                                <textarea
-                                    className="form-control"
-                                    placeholder="Input address"
-                                    rows="5"
-                                    value={this.state.selectedBook.description}
-                                    disabled="true"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Author</label>
-                                <input
-                                    className="form-control"
-                                    placeholder="Input address"
-                                    value={this.state.selectedBook.author}
-                                    disabled="true"
-                                />
-                            </div>
-                        </form>
-                            </div>
-                            <div class="col-md-2">
-                            <img class="img-thumbnail card-img-view" src={this.state.selectedBook.photo} alt="src={this.state.selectedBook.name}"/>
+                            <div className="col-md-2">
+                                <img className="img-thumbnail card-img-view" src={this.state.selectedBook.photo} alt="src={this.state.selectedBook.name}" />
                             </div>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="danger">
+                        <Button variant="danger"
+                        onClick={this.handleDeleteClick}>
                             <FontAwesomeIcon icon='trash' />
                             Delete
                         </Button>
