@@ -125,6 +125,15 @@ export class BooksListContainer extends React.Component {
                             <div class="col-md-10">
                             <form>
                             <div className="form-group">
+                                <label>ID</label>
+                                <input
+                                    className="form-control"
+                                    placeholder="Input name"
+                                    value={this.state.selectedBook.id}
+                                    disabled="true"
+                                />
+                            </div>
+                            <div className="form-group">
                                 <label>Name</label>
                                 <input
                                     className="form-control"

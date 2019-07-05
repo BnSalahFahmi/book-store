@@ -150,8 +150,9 @@ export class BookForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        debugger;
         const book = {
-            id: this.state.book.id,
+            id: this.state.book.id ? this.state.book.id : this.generatedID(),
             name: this.state.book.name,
             description: this.state.book.description,
             author: this.state.book.author,
@@ -169,6 +170,10 @@ export class BookForm extends React.Component {
     handleReset(event) {
         //TODO
     }
+
+    generatedID = function () {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
 
     render() {
         const { initialValues } = this.props.initialValues;
@@ -196,8 +201,8 @@ export class BookForm extends React.Component {
                     </div>
 
                     <div class="float-right">
-                        <button type="submit" className="btn btn-primary" onClick={this.handleDeleteClick}><FontAwesomeIcon icon='paper-plane' /> Submit</button>
-                        <button type="button" className="btn btn-default btn-space" onClick={this.handleCancel}><FontAwesomeIcon icon='ban' /> Cancel</button>
+                        {this.state.book.id ? <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><FontAwesomeIcon icon='paper-plane' /> Update</button> : <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><FontAwesomeIcon icon='paper-plane' /> Submit</button> }
+                        <button type="button" className="btn btn-danger btn-space" onClick={this.handleCancel}><FontAwesomeIcon icon='ban' /> Cancel</button>
                     </div>
                 </form>
             </div>

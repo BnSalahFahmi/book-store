@@ -3,7 +3,8 @@ import BookApi from '../../api/book-api';
 export const BookActionTypes  = {
     GET_BOOKS_RESPONSE : 'GET_BOOKS_RESPONSE',
     ADD_NEW_BOOK_RESPONSE : 'ADD_NEW_BOOK_RESPONSE',
-    GET_BOOK_RESPONSE : 'GET_BOOK_RESPONSE'
+    GET_BOOK_RESPONSE : 'GET_BOOK_RESPONSE',
+    UPDATE_BOOK_RESPONSE : 'UPDATE_BOOK_RESPONSE'
 }
 
 export const getBooksResponse = books => ({
@@ -30,7 +31,11 @@ export function saveBookAction(book) {
     return function (dispatch) {
         return BookApi.saveBook(book)
             .then(() => {
-                dispatch(addNewBookResponse());
+                if (book.id) {
+                    dispatch(updateBookResponse());
+                } else {
+                    dispatch(addNewBookResponse());
+                }
             }).catch(error => {
                 throw (error);
             });
@@ -52,3 +57,7 @@ export function getBookAction(bookId) {
             });
     };
 }
+
+export const updateBookResponse = () => ({
+    type: BookActionTypes.UPDATE_BOOK_RESPONSE
+});
