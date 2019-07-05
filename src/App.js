@@ -12,6 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import Dashboard from './components/dashboard';
 import BooksListContainer from "./components/book-list-container";
 import BookForm from "./components/book-form";
+import About from './components/about';
 
 library.add(faEye);
 library.add(faEdit);
@@ -58,6 +59,7 @@ const App = () => {
             <Route path="/books" component={BooksListContainer} />
             <Route path="/book" component={BookForm} />
             <Route path="/book/:id" component={BookForm} />
+            <Route path="/about" component={About} />
           </Switch>
         </div>
       </div>
