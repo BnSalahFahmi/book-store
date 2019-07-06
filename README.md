@@ -3,7 +3,9 @@
 The idea is to demonstrate how to to build a CRUD application with facebook's ReactJS and Redux.
 
 ## Preview
-<img src='preview.gif' width='768' alt='Preview'>
+<p align="center">
+	<img src='preview.gif' width='768' alt='Preview'>
+</p>
 
 ## Prerequisite
 * Nodejs v6+
@@ -11,8 +13,6 @@ The idea is to demonstrate how to to build a CRUD application with facebook's Re
 
 
 ## Getting Started
-
-git clone https://github.com/BnSalahFahmi/book-store.git
 
 1. Clone the project from git (git clone https://github.com/BnSalahFahmi/book-store.git).
 2. Go to 'book-store' directory.
