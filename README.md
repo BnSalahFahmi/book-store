@@ -4,7 +4,7 @@ The idea is to demonstrate how to to build a CRUD application with facebook's Re
 
 ## Preview
 <p align="center">
-	<img src='preview.gif' width='768' alt='Preview'>
+	<img src='preview.gif' alt='Preview'>
 </p>
 
 ## Prerequisite
