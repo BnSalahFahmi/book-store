@@ -94,6 +94,11 @@ const books = [
 
 const delay = 500;
 
+
+const generatedID = function () {
+    return '_' + Math.random().toString(36).substr(2, 9);
+};
+
 class BookApi {
     static getAllBooks() {
         return new Promise((resolve) => {
@@ -107,6 +112,13 @@ class BookApi {
         book = Object.assign({}, book); 
         return new Promise((resolve, reject) => {
             setTimeout(() => {
+                if (book.id) {
+                    const existingBookIndex = books.findIndex(a => a.id === book.id);
+                    books.splice(existingBookIndex, 1, book);
+                } else {
+                    book.id = generatedID();
+                    books.push(book);
+                }
                 resolve(book);
             }, delay);
         });

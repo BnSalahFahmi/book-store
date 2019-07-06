@@ -177,7 +177,7 @@ export class BookForm extends React.Component {
 
                     <div class="form-group">
                         <label for="photo">Photo</label>
-                        <input type="text" class="form-control" value={this.state.book.photo} onChange={this.handleChange} id="photoUrl" placeholder="photo URL" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                        <input type="text" class="form-control" value={this.state.book.photo} onChange={this.handleChange} id="photo" placeholder="photo URL" aria-describedby="photoHelp" />
                     </div>
 
                     <div class="float-right">
@@ -193,7 +193,6 @@ export class BookForm extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
     const bookId = ownProps.location.pathname.split("/")[2];
     return {
         initialValues: state.booksReducer.books,
