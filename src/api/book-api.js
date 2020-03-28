@@ -110,7 +110,7 @@ class BookApi {
 
     static saveBook(book) {
         book = Object.assign({}, book); 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
                 if (book.id) {
                     const existingBookIndex = books.findIndex(a => a.id === book.id);

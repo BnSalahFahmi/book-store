@@ -1,11 +1,11 @@
-import React, { useState, Fragment } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEdit, faTrash, faUser, faList, faSignOutAlt, faPlus, faTachometerAlt, faBook } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEdit, faTrash, faUser, faList, faSignOutAlt, faPlus, faTachometerAlt, faBook, faCode, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -24,10 +24,10 @@ library.add(faList);
 library.add(faSignOutAlt);
 library.add(faPlus);
 library.add(faBook);
+library.add(faCode);
+library.add(faQuestionCircle);
 
 const App = () => {
-
-  const loggedUser = "Fahmi BEN SALAH";
 
   return (
     <Router>
@@ -49,7 +49,10 @@ const App = () => {
             </ul>
             {<ul className="navbar-nav mr-auto pull-right">
               <li className="navbar-item">
-                <Link to="/about" className="nav-link"><FontAwesomeIcon icon='user' /> {loggedUser}</Link>
+                <Link to="/about" className="nav-link"><FontAwesomeIcon icon='question-circle' /></Link>
+              </li>
+              <li className="navbar-item">
+                <a href="https://github.com/BnSalahFahmi/book-store" className="nav-link"><FontAwesomeIcon icon='code' /></a>
               </li>
             </ul>}
           </div>
